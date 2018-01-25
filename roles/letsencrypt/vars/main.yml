@@ -1,0 +1,6 @@
+---
+# vars file for letsencrypt
+domain_example: example.com
+domain_wiki: wiki.example.com
+domain_nagios: nagios.example.com
+deps: ['git', 'python-dev', 'build-essential', 'libpython-dev', 'libpython2.7', 'augeas-lenses', 'libaugeas0', 'libffi-dev', 'libssl-dev', 'python-virtualenv', 'python3-virtualenv', 'virtualenv']

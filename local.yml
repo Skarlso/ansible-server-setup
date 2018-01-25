@@ -1,0 +1,10 @@
+- hosts: local
+  connection: local
+  become: yes
+  roles:
+    # - noip
+    # - ssh
+    # - utils
+    - nginx
+    - letsencrypt
+    # - nagios

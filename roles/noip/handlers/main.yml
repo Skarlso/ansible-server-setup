@@ -1,0 +1,11 @@
+---
+# handlers file for noip
+- name: Setup NoIP
+  shell: '{{home_dir}}/noip_install.sh'
+  no_log: true
+  notify:
+    - Start NoIP
+
+- name: Start NoIP
+  no_log: true
+  shell: /usr/local/bin/noip2

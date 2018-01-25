@@ -1,0 +1,9 @@
+# Add nagios usser group
+- group:
+    name: nagios
+    state: present
+
+# Add user
+- user:
+    name: nagios
+    group: nagios

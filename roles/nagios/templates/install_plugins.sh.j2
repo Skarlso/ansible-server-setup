@@ -1,0 +1,6 @@
+cd {{home_dir}}
+curl -L -O https://nagios-plugins.org/download/nagios-plugins-{{nagios_plugin_version}}.tar.gz
+tar xvf nagios-plugins-{{nagios_plugin_version}}.tar.gz
+cd nagios-plugins-{{nagios_plugin_version}}
+./configure --with-nagios-user=nagios --with-nagios-group=nagios --with-openssl
+make && make install

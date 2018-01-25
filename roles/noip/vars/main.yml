@@ -1,0 +1,5 @@
+---
+# vars file for noip
+noip_username: '{{vault_noip_username}}'
+noip_password: '{{vault_noip_password}}'
+deps: ['expect']

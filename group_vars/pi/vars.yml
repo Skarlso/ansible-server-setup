@@ -1,0 +1,7 @@
+---
+# SSH sudo keys and pass
+ansible_become_pass: '{{vault_ansible_become_pass}}'
+ansible_ssh_port: '{{vault_ansible_ssh_port}}'
+ansible_ssh_user: '{{vault_ansible_ssh_user}}'
+ansible_ssh_private_key_file: '{{vault_ansible_ssh_private_key_file}}'
+home_dir: /root

@@ -1,0 +1,19 @@
+- name: Copy Pending Update File
+  copy:
+    src: files/pending_security_updates.rb
+    dest: /usr/lib/nagios/plugins/pending_security_updates.rb
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Setup Command Definition
+  blockinfile:
+    path: /usr/local/nagios/etc/objects/commands.cfg
+    block: |
+      {{pending_updates_command}}
+
+- name: Setup Local Command Service Definition
+  blockinfile:
+    path: /usr/local/nagios/etc/objects/localhost.cfg
+    block: |
+      {{pending_updates_service}}

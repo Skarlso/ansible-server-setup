@@ -1,0 +1,22 @@
+---
+# vars file for nagios
+pending_updates_service: |
+      # Define a service to check the load on the local machine.
+
+      define service{
+              use                             local-service         ; Name of service template to use
+              host_name                       localhost
+              service_description             Pending Security Packages
+              check_command                   pending_security_updates
+              }
+pending_updates_command: |
+      # 'pending_security' command definition
+      define command{
+      command_name    pending_security_updates
+      command_line    /usr/lib/nagios/plugins/pending_security_updates.rb
+      }
+nagios_core_version: 4.1.1
+nagios_plugin_version: 2.2.1
+deps: ['autoconf', 'gcc', 'libc6', 'libmcrypt-dev', 'make', 'libssl-dev', 'libgd-dev', 'sendmail', 'apache2', 'apache2-utils', 'build-essential', 'expect', 'openssl', 'libssl-dev', 'gcc', 'xinetd']
+nagios_username: '{{vault_nagios_username}}'
+nagios_password: '{{vault_nagios_password}}'

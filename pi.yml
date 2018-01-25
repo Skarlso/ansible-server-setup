@@ -1,0 +1,10 @@
+- hosts: pi
+  connection: ssh
+  become: yes
+  become_user: root
+  roles:
+    - noip
+    - utils
+    - nagios
+    - nginx
+    - letsencrypt

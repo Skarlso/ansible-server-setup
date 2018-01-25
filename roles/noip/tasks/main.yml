@@ -1,0 +1,18 @@
+---
+# tasks file for noip
+- stat:
+    path: /usr/local/bin/noip2
+  register: st
+
+# Install dependencies
+- name: Install dependencies
+  apt: pkg="{{item}}" state=installed
+  with_items:
+    - "{{deps}}"
+
+- name: Copy Setup script
+  no_log: true
+  template: src=install.sh.j2 dest={{home_dir}}/noip_install.sh mode=0744
+  when: st.stat.exists == False
+  notify:
+  - Setup NoIP

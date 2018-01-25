@@ -1,0 +1,16 @@
+# Install Nagios Core
+cd {{home_dir}}
+curl -L -O https://assets.nagios.com/downloads/nagioscore/releases/nagios-{{nagios_core_version}}.tar.gz
+tar xvf nagios-{{nagios_core_version}}.tar.gz
+cd nagios-{{nagios_core_version}}
+
+./configure --with-command-group=nagios --with-htmurl=/ --with-cgiurl=/cgi-bin
+make all
+make install
+make install-commandmode
+make install-init
+make install-config
+# /usr/bin/install -c -m 644 sample-config/httpd.conf /etc/apache2/sites-available/nagios.conf
+mkdir -p /usr/local/nagios/var/spool/checkresults
+chown -R nagios:nagios /usr/local/nagios/var/
+

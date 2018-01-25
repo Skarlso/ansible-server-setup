@@ -1,0 +1,22 @@
+---
+# tasks file for nagios
+
+# Check Nagios is installed
+- stat:
+    path: /usr/local/nagios/bin/nagios
+  register: st
+
+- name: Install Nagios
+  block:
+    - include: create_users.yml
+    - include: install_dependencies.yml
+    - include: core_install.yml
+    - include: plugin_install.yml
+    - include: create_htpasswd.yml
+    - include: setup_custom_check.yml
+  when: st.stat.exists == False
+
+- name: Start Nagios
+  systemd: state=started name=nagios.service
+  when: st.stat.exists == False
+

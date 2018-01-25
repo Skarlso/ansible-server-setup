@@ -1,0 +1,10 @@
+---
+# vars file for nginx
+nginx: /etc/nginx
+nginx_vhosts: /etc/nginx/vhosts
+nginx_user: '{{vault_nginx_user}}'
+example_server_name: example.com
+example_proxy_pass: http://127.0.0.1:8080
+wiki_server_name: wiki.example.com
+wiki_root: /home/user/wiki/dokuwiki-2017-02-19b
+nagios_server_name: nagios.example.com

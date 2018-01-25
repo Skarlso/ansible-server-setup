@@ -1,0 +1,6 @@
+---
+# tasks file for utils
+- name: Install Utils
+  apt: pkg="{{item}}" state=installed
+  with_items:
+    - "{{utils}}"

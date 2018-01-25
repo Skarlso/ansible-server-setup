@@ -1,0 +1,4 @@
+- name: Copy Core Install script
+  template: src=install_core.sh.j2 dest={{home_dir}}/install_core.sh mode=0744
+- name: Run Core Install script
+  shell: "{{home_dir}}/install_core.sh"

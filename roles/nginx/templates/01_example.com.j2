@@ -1,0 +1,7 @@
+server {
+    server_name {{ example_server_name }};
+    location / {
+        include proxy_params;
+        proxy_pass {{ example_proxy_pass }};
+    }
+}

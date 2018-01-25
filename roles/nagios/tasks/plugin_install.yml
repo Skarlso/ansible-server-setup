@@ -1,0 +1,4 @@
+- name: Copy Plugins Install script
+  template: src=install_plugins.sh.j2 dest={{home_dir}}/install_plugins.sh mode=0744
+- name: Run Plugins Install script
+  shell: "{{home_dir}}/install_plugins.sh"

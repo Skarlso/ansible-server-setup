@@ -1,0 +1,3 @@
+---
+# vars file for packages
+utils: ['awscli', 'vim', 'wget', 'ruby', 'python3', 'nmap', 'ntp', 'lynx', 'git']

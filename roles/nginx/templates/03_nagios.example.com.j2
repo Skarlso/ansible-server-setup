@@ -1,0 +1,43 @@
+upstream php {
+    server unix:/var/run/php5-fpm.sock;
+}
+
+upstream fcgiwrap {
+    server unix:/var/run/fcgiwrap.socket;
+}
+server {
+    listen 80;
+    server_name {{ nagios_server_name }};
+
+    access_log  /var/log/nginx/nagios.access.log;
+    error_log   /var/log/nginx/nagios.error.log info;
+
+	root /usr/local/nagios/share;
+	index index.php index.html;
+
+    auth_basic "Nagios Restricted Access";
+    auth_basic_user_file /usr/local/nagios/etc/htpasswd.users;
+    location = /favicon.ico {
+      return 204;
+      access_log     off;
+      log_not_found  off;
+    }
+
+    location ~ \.cgi$ {
+        root /usr/local/nagios/sbin;
+        rewrite ^/cgi-bin/(.*)$ /$1;
+        include fastcgi_params;
+        fastcgi_param AUTH_USER $remote_user;
+        fastcgi_param REMOTE_USER $remote_user;
+        fastcgi_param SCRIPT_FILENAME /usr/local/nagios/sbin$fastcgi_script_name;
+        fastcgi_pass fcgiwrap;
+    }
+
+	location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_pass php;
+    }
+}

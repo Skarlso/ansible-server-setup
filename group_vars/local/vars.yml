@@ -1,0 +1,7 @@
+---
+# SSH sudo keys and pass
+home_dir: /vagrant
+nagios_username: test_username
+nagios_password: test_password
+ansible_become_pass: vagrant
+vault_nginx_user: ubuntu
