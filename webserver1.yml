@@ -1,4 +1,4 @@
-- hosts: pi
+- hosts: webserver1
   connection: ssh
   become: yes
   become_user: root
