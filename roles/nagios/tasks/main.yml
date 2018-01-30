@@ -8,12 +8,12 @@
 
 - name: Install Nagios
   block:
-    - include: create_users.yml
-    - include: install_dependencies.yml
-    - include: core_install.yml
-    - include: plugin_install.yml
-    - include: create_htpasswd.yml
-    - include: setup_custom_check.yml
+    - include_tasks: create_users.yml
+    - include_tasks: install_dependencies.yml
+    - include_tasks: core_install.yml
+    - include_tasks: plugin_install.yml
+    - include_tasks: create_htpasswd.yml
+    - include_tasks: setup_custom_check.yml
   when: st.stat.exists == False
 
 - name: Start Nagios
