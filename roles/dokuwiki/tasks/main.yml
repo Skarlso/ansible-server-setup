@@ -1,0 +1,35 @@
+---
+- name: Add Software Properties Common
+  apt: pkg="software-properties-common" state=installed
+
+- name: Add ondrej/php repository
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+
+- name: Install dependencies
+  apt: pkg="{{item}}" state=installed
+  with_items:
+    - "{{deps}}"
+
+- name: Make sure "{{dokuwiki_location}}" exists
+  file:
+    path: "{{dokuwiki_location}}"
+    state: directory
+    mode: 0755
+
+- name: Make sure "{{dokuwiki_location}}/wiki" exists
+  file:
+    path: "{{dokuwiki_location}}/wiki"
+    state: directory
+    mode: 0755
+
+- name: Download Dokuwiki version
+  get_url:
+    url: "{{dokuwiki_stable}}"
+    dest: "{{dokuwiki_location}}"
+    mode: 0666
+
+- name: Extract Dokuwiki
+  unarchive:
+    src: "{{dokuwiki_location}}/dokuwiki-stable.tgz"
+    dest: "{{dokuwiki_location}}/wiki"

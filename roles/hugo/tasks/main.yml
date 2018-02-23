@@ -1,0 +1,20 @@
+---
+# tasks file for hugo
+# Install dependencies
+- name: Install dependencies
+  apt: pkg="{{item}}" state=installed
+  with_items:
+    - "{{deps}}"
+- name: Install hugo
+  apt: pkg="hugo" state=installed
+
+- name: Checkout Site Source
+  git:
+    repo: "https://github.com/Skarlso/blogsource.git"
+    dest: /home/user/site_source
+
+- name: Build and run site
+  shell: "{{hugo_cmd}}"
+  args:
+    chdir: /home/user/site_source
+
