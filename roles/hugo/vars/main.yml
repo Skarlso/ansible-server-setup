@@ -1,6 +1,6 @@
 ---
 # vars file for hugo
 deps: ['golang']
-hugo_url: "https://skarlso.com"
+hugo_url: "<placeholder>"
 hugo_cmd: "hugo server --bind=127.0.0.1 --port=8080 --baseUrl={{hugo_url}} --appendPort=false --logFile hugo.log --verboseLog --verbose -v &"
 
